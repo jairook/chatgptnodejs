@@ -12,16 +12,16 @@ const openai = new OpenAI({
 const userInterface = readline.createInterface({
     input: process.stdin,
     output: process.stdout
-})
+});
 
-userInterface.prompt()
+userInterface.prompt();
 
 userInterface.on("line", async input => {
     const res = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [{ "role": "user", "content": input}]
     })
-    console.log(res.choices[0].message)
+    console.log(res.choices[0].message.content)
     userInterface.prompt()
     // .then(res => {
     //     console.log(res.data.choices[0].message.content)
